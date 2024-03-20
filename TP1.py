@@ -1,67 +1,67 @@
 #Exercice n°1
 
-"""On peut créer un programme qui dans un premier temps ajoute dans une liste vide tous les mots qui ne comprennent que les lettes du tirages puis on prend celui qui a la taille la plus longue. On utilise une foncton auxilière qui vérifie si un mot peut être formé avec les lettres du tirage"""
+"""We can create a program which adds in a list every word that contains the letters of the draw and after that, we select the longer one. We use another fonction that verify if a word is written with the letters of the draw"""
 
 #Exercice n°2
-# mots_disponibles est une liste des mots du lexique utilisé
+# words_disponible is the list of the lexicon's words
 
 
 
-def est_mot_possible(mot, tirage):
-    tirage_copie = tirage.copy()
+def is_word_possible(mot, draw):
+    draw_copie = draw.copy()
     for lettre in mot:
-        if lettre not in tirage_copie:
+        if letter not in draw_copie:
             return False
-        tirage_copie.remove(lettre)
+        draw_copie.remove(letter)
     return True
 
 
 
 
-def long_mot (tirage,mots_disponibles):
-    mots_possibles = []
-    for mot in mots_disponibles:
-        if est_mot_possible(mot,tirage):
-            mots_possibles.append(mot)
-    if mots_possibles == [] : return None
+def long_word (draw,words_disponible):
+   words_possible = []
+    for word in words_disponible:
+        if is_word_possible(word,draw):
+            words_possible.append(word)
+    if words_possible == [] : return None
     else :
-        mot_long = mots_possibles[0]
-        for mot in mots_possibles :
-            if len(mot)>len(mot_long):
-                mot_long= mot
-        return mot_long
+        word_long = words_possible[0]
+        for word in words_possible :
+            if len(word)>len(word_long):
+                word_long= word
+        return word_long
 
 
 #Exercice n°3
 
-"""On peut utiliser une dictionnaire pour représenter les points associés aux lettres"""
-dico_score={'a':1,'b':3,'c':3,'d':2,'e':1,'f':4,'g':2,'h':4,'i':1,'j':8,'k':10,'l':1,'m':2,'n':1,'o':1,'p':3,'q':8,'r':1,'s':1,'t':1,'u':1,'v':4,'w':10,'x':10,'y':10,'z':10}
+"""We can use a dictionnary to put scores to the different letters"""
+dic_score={'a':1,'b':3,'c':3,'d':2,'e':1,'f':4,'g':2,'h':4,'i':1,'j':8,'k':10,'l':1,'m':2,'n':1,'o':1,'p':3,'q':8,'r':1,'s':1,'t':1,'u':1,'v':4,'w':10,'x':10,'y':10,'z':10}
 
-def score(mot):
-    compteur=0
-    for lettre in mot:
-        compteur += dico_score[lettre]
-    return compteur
+def score(word):
+    counter=0
+    for letter in word:
+        counter += dic_score[letter]
+    return counter
 
-def max_score(liste):
-    max_mot = ''
+def max_score(list):
+    max_word = ''
     points = 0
-    for mot in liste:
-        score =score(mot)
+    for word in list:
+        score =score(word)
         if score>points:
-            max_mot=mot
+            max_word=word
             points=score
-    return max_mot,points
-"""Il faut maintenant modifier la fonction long_mot pour comptabiliser le score du mot au lieu de la longueur du mot"""
+    return max_word,points
+"""NOw, we have to modify the function long_word in order to count the word's score instead of the length'word."""
 
-def long_mot2 (tirage,mots_disponibles):
-    mots_possibles = []
-    for mot in mots_disponibles:
-        if est_mot_possible(mot,tirage):
-            mots_possibles.append(mot)
-    if mots_possibles == [] : return None
+def long_word2 (draw,words_disponible):
+    words_possible = []
+    for word in words_disponible:
+        if is_word_possible(word,draw):
+            words_possible.append(word)
+    if words_possible == [] : return None
     else :
-       return max_score(mots_possibles)[0]
+       return max_score(words_possible)[0]
 
 
 #Exercice n°4
